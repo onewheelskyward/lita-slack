@@ -180,7 +180,7 @@ module Lita
 
         def handle_unknown
           unless data["reply_to"]
-            log.debug("#{type} event received from Slack and will be ignored. #{data.inspect}")
+            log.debug("ignored event: #{data.inspect}")
           end
         end
 
