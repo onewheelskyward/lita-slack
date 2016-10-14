@@ -89,6 +89,7 @@ module Lita
         attr_reader :post_message_config
 
         def call_api(method, post_data = {})
+          Lita.logger.debug("Calling API https://slack.com/api/#{method} with post_data #{post_data}")
           response = connection.post(
             "https://slack.com/api/#{method}",
             { token: config.token }.merge(post_data)
@@ -118,6 +119,7 @@ module Lita
             raise "Slack API call to #{method} failed with status code #{response.status}: '#{response.body}'. Headers: #{response.headers}"
           end
 
+          Lita.logger.debug("API Response: #{response.body}")
           MultiJson.load(response.body)
         end
       end

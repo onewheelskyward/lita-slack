@@ -118,7 +118,7 @@ module Lita
           message = Message.new(robot, body, source)
           message.command! if source.private_message?
           message.extensions[:slack] = { timestamp: data["ts"] }
-          log.debug("Dispatching message to Lita from #{user.id}.")
+          log.debug("Message received from #{user.id}: #{message.body}")
           robot.receive(message)
         end
 
@@ -180,12 +180,12 @@ module Lita
 
         def handle_unknown
           unless data["reply_to"]
-            log.debug("#{type} event received from Slack and will be ignored.")
+            log.debug("#{type} event received from Slack and will be ignored. #{data.inspect}")
           end
         end
 
         def handle_user_change
-          log.debug("Updating user data.")
+          log.debug("Updating user data. #{data.inspect}")
           UserCreator.create_user(SlackUser.from_data(data["user"]), robot, robot_id)
         end
 
