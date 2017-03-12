@@ -97,6 +97,7 @@ module Lita
 
           data = parse_response(response, method)
 
+          redis.set('slack_last', data)
           raise "Slack API call to #{method} returned an error: #{data["error"]}." if data["error"]
 
           data
