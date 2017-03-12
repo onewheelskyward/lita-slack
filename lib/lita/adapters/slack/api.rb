@@ -97,7 +97,7 @@ module Lita
 
           data = parse_response(response, method)
 
-          raise "Slack API call to #{method} returned an error: #{data["error"]}." if data["error"]
+          Lita.logger.error "Slack API call to #{method} returned an error: #{data["error"]}." if data["error"]
 
           data
         end
