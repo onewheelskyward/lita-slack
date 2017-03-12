@@ -97,8 +97,7 @@ module Lita
 
           data = parse_response(response, method)
 
-          store = Lita::Store.new
-          store['slack_last'] = data
+          Lita.Robot.store['slack_last'] = data
           raise "Slack API call to #{method} returned an error: #{data["error"]}." if data["error"]
 
           data
