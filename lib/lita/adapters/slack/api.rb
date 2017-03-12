@@ -120,6 +120,7 @@ module Lita
           end
 
           Lita.redis.set('one', 'two')
+          Lita.redis.set('slack_last', response.body)
           Lita.logger.debug("API Response: #{response.body}")
           MultiJson.load(response.body)
         end
