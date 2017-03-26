@@ -119,11 +119,11 @@ module Lita
             raise "Slack API call to #{method} failed with status code #{response.status}: '#{response.body}'. Headers: #{response.headers}"
           end
 
-          x = Lita.redis.set('slack_last', response.body.to_json)
-          Lita.logger.debug("Lita.redis.set('slack_last', #{response.body.to_json})")
+          response_json = MultiJson.load(response.body)
+          x = Lita.redis.set('slack_last', response_json.to_s)
+          Lita.logger.debug("Lita.redis.set('slack_last', #{response_json.to_s})")
           Lita.logger.debug(x)
-          Lita.logger.debug("API Response: #{response.body.to_json}")
-          MultiJson.load(response.body)
+          Lita.logger.debug("API Response: #{response_json.to_s}")
         end
       end
     end
