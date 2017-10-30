@@ -92,10 +92,9 @@ module Lita
           Lita.logger.debug("Calling API https://slack.com/api/#{method} with post_data #{post_data}")
           metadata = { token: config.token }.merge(post_data)
           Lita.logger.debug("So meta: #{metadata}")
-          response = connection.post(
-            "https://slack.com/api/#{method}",
-            metadata
-          )
+          uri = "https://slack.com/api/#{method}?#{metadata.join(/&/)}"
+          Lita.logger.debug "URI: #{uri}"
+          response = connection.get(uri)
 
           data = parse_response(response, method)
 
