@@ -61,7 +61,7 @@ module Lita
             as_user: true,
             channel: channel_id,
           }
-          msg.merge! messages
+          msg.merge! messages[0]
           call_api('chat.postMessage', msg)
         end
 
