@@ -56,6 +56,7 @@ module Lita
         end
 
         def send_messages(channel_id, messages)
+          Lita.logger.debug("send_messages got msg for #{channel_id} as #{messages.inspect}")
           msg = {**post_message_config,
             as_user: true,
             channel: channel_id,
