@@ -56,13 +56,12 @@ module Lita
         end
 
         def send_messages(channel_id, messages)
-          call_api(
-            "chat.postMessage",
-            **post_message_config,
+          msg = {**post_message_config,
             as_user: true,
             channel: channel_id,
-            text: messages.join("\n"),
-          )
+          }
+          msg.merge! messages
+          call_api('chat.postMessage', msg)
         end
 
         def set_topic(channel, topic)
