@@ -85,13 +85,14 @@ module Lita
           Lita.logger
         end
 
-        def payload_for(channel, string)
-          MultiJson.dump({
+        def payload_for(channel, payload)
+          msg = {
             id: 1,
             type: 'message',
-            text: string,
             channel: channel
-          })
+          }
+          msg.merge!(payload)
+          MultiJson.dump(msg)
         end
 
         def receive_message(event)
