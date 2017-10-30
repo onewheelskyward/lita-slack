@@ -92,6 +92,7 @@ module Lita
             channel: channel
           }
           msg.merge!(payload)
+          Lita.logger.debug("Message is: #{msg.inspect}")
           MultiJson.dump(msg)
         end
 
