@@ -123,7 +123,7 @@ module Lita
           x = Lita.redis.set('slack_last', response_json.to_s)
           Lita.logger.debug("Lita.redis.set('slack_last', #{response_json.to_s})")
           Lita.logger.debug(x)
-          Lita.logger.debug("API Response: #{response_json.to_s}")
+          # Lita.logger.debug("API Response: #{response_json.to_s}")
           response_json
         end
       end
