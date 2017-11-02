@@ -179,8 +179,7 @@ module Lita
         end
 
         def handle_unknown
-          log.debug "#{data['type']}"
-          unless data["reply_to"] or (data['type'] != 'user_typing' and data['type'] != 'presence_change')
+          unless data["reply_to"] or (data['type'] == 'user_typing' and data['type'] == 'presence_change')
             log.debug("ignored event: #{data.inspect}")
           end
         end
