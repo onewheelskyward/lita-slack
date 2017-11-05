@@ -179,7 +179,7 @@ module Lita
         end
 
         def handle_unknown
-          unless data["reply_to"] or data['type'] == 'user_typing' or data['type'] == 'presence_change'
+          unless data["reply_to"] or data['type'] == 'user_typing' or data['type'] == 'presence_change' or data['type'] == 'reconnect_url'
             log.debug("ignored event: #{data.inspect}")
           end
         end
