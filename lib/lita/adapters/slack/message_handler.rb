@@ -185,7 +185,7 @@ module Lita
         end
 
         def handle_user_change
-          log.debug("Updating user data. #{data.inspect}")
+          # log.debug("Updating user data. #{data.inspect}")
           UserCreator.create_user(SlackUser.from_data(data["user"]), robot, robot_id)
         end
 
